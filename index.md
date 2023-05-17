@@ -29,7 +29,7 @@ Syntax highlighted code block
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 [My URL](iting://open?msg_type=52&live_type=0&liveroom_id=2989097)
 
-<table>
+<table class="properties">
   <tbody>
     <tr>
       <td><a href="iting://open?msg_type=52&live_type=0&liveroom_id=2989097"><code>聂传龙XXXXX</code></a></td>
