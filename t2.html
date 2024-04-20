@@ -226,6 +226,10 @@ const stopTimer = (name) => {
 
 const submitSource= () => {
     let gsheetInput = $('#gsheet-source');
+    if (gsheetInput.value === 'excel')
+      gsheetInput.value = 'https://docs.google.com/spreadsheets/d/11xhDW8vgSVJRvH4REf1CJtM3SegWfp7Mr3c4FKMzRB8/edit?usp=sharing'
+    else if (gsheetInput.value === 'work')
+      gsheetInput.value = 'https://www.openssl.org/docs/man1.1.1/man1/x509.html'  
     $('iframe').src = gsheetInput.value;
     gsheetInput.value = "";
 } 
