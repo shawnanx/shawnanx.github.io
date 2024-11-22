@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .item input[type="text"] {
+            margin: 0 10px;
+            flex-grow: 1;
+        }
+        .item a {
+            margin-right: 10px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON Editor</h1>
+    <div id="list-container"></div>
+    <button id="download-button">Download Selected JSON</button>
+
+    <script>
+        // Sample JSON array
+        const jsonArray = [
+            { url: "https://example.com/1", text: "Example 1", checked: false },
+            { url: "https://example.com/2", text: "Example 2", checked: true },
+            { url: "https://example.com/3", text: "Example 3", checked: false }
+        ];
+
+        // Function to render the list
+        function renderList() {
+            const container = document.getElementById("list-container");
+            container.innerHTML = ""; // Clear existing content
+
+            jsonArray.forEach((item, index) => {
+                const div = document.createElement("div");
+                div.className = "item";
+
+                // Link
+                const link = document.createElement("a");
+                link.href = item.url;
+                link.target = "_blank";
+                link.textContent = "Link";
+                div.appendChild(link);
+
+                // Input for text
+                const input = document.createElement("input");
+                input.type = "text";
+                input.value = item.text;
+                input.addEventListener("input", (e) => {
+                    jsonArray[index].text = e.target.value;
+                });
+                div.appendChild(input);
+
+                // Checkbox
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.checked = item.checked;
+                checkbox.addEventListener("change", (e) => {
+                    jsonArray[index].checked = e.target.checked;
+                });
+                div.appendChild(checkbox);
+
+                container.appendChild(div);
+            });
+        }
+
+        // Function to download selected JSON
+        function downloadSelectedJSON() {
+            const selected = jsonArray.filter(item => item.checked);
+            const blob = new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "selected.json";
+            a.click();
+
+            URL.revokeObjectURL(url);
+        }
+
+        // Event listener for the download button
+        document.getElementById("download-button").addEventListener("click", downloadSelectedJSON);
+
+        // Initial render
+        renderList();
+    </script>
+</body>
+</html>
