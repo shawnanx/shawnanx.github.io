@@ -36,10 +36,44 @@
     <script>
         // Sample JSON array
         const jsonArray = [
-            { url: "https://example.com/1", text: "Example 1", checked: false },
-            { url: "https://example.com/2", text: "Example 2", checked: true },
-            { url: "https://example.com/3", text: "Example 3", checked: false }
-        ];
+            { "url": "iting://open", "text": "打开应用", "checked": false },
+            { "url": "iting://open?msg_type=10&groupid=10002", "text": "打开私信 (groupid 选填)", "checked": false },
+            { "url": "iting://open?msg_type=10&uid=xx", "text": "给用户发私信（待开发 2017.2.14）", "checked": false },
+            { "url": "iting://open?msg_type=11&track_id=xx&focus_tab=xx&autoplay=false&keyboard=false&task_id=xx", "text": "播放页 (focus_tab=99 定位到评论 | autoplay 自动起播 | keyboard=true 唤起评论框 | task_id=xx 积分中心任务)", "checked": false },
+            { "url": "iting://open?msg_type=11&track_id=xxx&subject_id=123", "text": "播放听单声音", "checked": false },
+            { "url": "iting://open?msg_type=12&uid=8163465", "text": "访问个人主页", "checked": false },
+            { "url": "iting://open?msg_type=13&album_id=5213", "text": "打开专辑详情", "checked": false },
+            { "url": "iting://open?msg_type=13&album_id=5213&tab_name=comment", "text": "打开专辑页评价 tab", "checked": false },
+            { "url": "iting://open?msg_type=13&album_id=5213&selfshare_from=book", "text": "扫描二维码从自分享落地页打开专辑详情", "checked": false },
+            { "url": "iting://open?msg_type=14&url=http://baidu.com", "text": "带 url 打开 wap 页", "checked": false },
+            { "url": "iting://open?msg_type=15", "text": "打开收到的评论页", "checked": false },
+            { "url": "iting://open?msg_type=16&tab=2", "text": "打开我的粉丝页（进入我的关注页）", "checked": false },
+            { "url": "iting://open?msg_type=17", "text": "打开新鲜事页面 (已废弃)", "checked": false },
+            { "url": "iting://open?msg_type=18", "text": "找听友", "checked": false },
+            { "url": "iting://open?msg_type=19&act_id=xx&v=2014_6_24", "text": "打开活动", "checked": false },
+            { "url": "iting://open?msg_type=19&act_id=xx&track_id=xx&v=2014_6_24", "text": "活动拉票", "checked": false },
+            { "url": "iting://open?msg_type=20&bid=xxx&src=xxx", "text": "录音上传 (新增参数 bid, src)", "checked": false },
+            { "url": "iting://open?msg_type=20&act_id=xx", "text": "投票活动录音上传", "checked": false },
+            { "url": "iting://open?msg_type=21", "text": "打开登录页", "checked": false },
+            { "url": "iting://open?msg_type=22", "text": "绑定手机", "checked": false },
+            { "url": "iting://open?msg_type=23", "text": "发现页", "checked": false },
+            { "url": "iting://open?msg_type=24", "text": "打开圈子页面 (已废弃)", "checked": false },
+            { "url": "iting://open?msg_type=26", "text": "拉雅页 (已废弃)", "checked": false },
+            { "url": "iting://open?msg_type=27", "text": "打开应用并播放 (已废弃)", "checked": false },
+            { "url": "iting://open?msg_type=29", "text": "打开专辑并播放 (已废弃)", "checked": false },
+            { "url": "iting://open?msg_type=30", "text": "打开我的页面", "checked": false },
+            { "url": "iting://open?msg_type=31", "text": "打开主播管理中心", "checked": false },
+            { "url": "iting://open?msg_type=33", "text": "打开意见反馈页 (已废弃，统一用 type 46)", "checked": false },
+            { "url": "iting://open?msg_type=34&category_id=xx", "text": "打开具体分类页", "checked": false },
+            { "url": "iting://open?msg_type=35", "text": "打开流量包订购", "checked": false },
+            { "url": "iting://open?msg_type=36", "text": "打开听单列表页", "checked": false },
+            { "url": "iting://open?msg_type=36&id=123&content_type=1", "text": "打开听单详情页 (content_type=1:专辑, 2:声音)", "checked": false },
+            { "url": "iting://open?msg_type=38&type=track&key=rediskey&rankingListId=xx", "text": "打开排行榜 (type=[track, album, anchor])", "checked": false },
+            { "url": "iting://open?msg_type=38&type=cluster&clusterId=123", "text": "打开聚合排行榜", "checked": false },
+            { "url": "iting://open?msg_type=39", "text": "打开广播首页", "checked": false },
+            { "url": "iting://open?msg_type=40&live_type=x&live_id=xx", "text": "打开直播详情页 (已废弃)", "checked": false }
+        ]；
+
 
         // Function to render the list
         function renderList() {
