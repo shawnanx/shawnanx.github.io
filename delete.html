@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List with Links</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>List with Links</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Count</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody id="data-table">
+      <!-- JavaScript will populate this -->
+    </tbody>
+  </table>
+
+  <script>
+    // Data array
+    const data = [
+  { cnt: '2 / 42', nm: '着迷_璀璨', rid: '7708559', date: '05-13-24' },
+  { cnt: '2 / 18', nm: '洛临疏', rid: '7610744', date: '06-15-24' },
+  { cnt: '2 / 6', nm: '高瑞克_YY', rid: '7646449', date: '04-16-24' },
+  { cnt: '1 / 140', nm: '玖玥_YM', rid: '7706791', date: '06-27-24' },
+  { cnt: '2 / 14', nm: '王慵懒老师', rid: '7653797', date: '06-04-24' },
+  { cnt: '1 / 56', nm: '李以欣_万物', rid: '7365901', date: '06-11-24' },
+  { cnt: '2 / 32', nm: '樊北北', rid: '7646754', date: '04-29-24' },
+  { cnt: '2 / 14', nm: '晚意_万物声', rid: '7676226', date: '05-31-24' },
+  { cnt: '1 / 107', nm: '斯嘉_素未谋', rid: '7765126', date: '05-22-24' },
+  { cnt: '2 / 162', nm: '铃铛_玖慕', rid: '7748771', date: '06-28-24' },
+  { cnt: '1 / 21', nm: '拉拉爱跳舞', rid: '7661985', date: '05-30-24' },
+  { cnt: '2 / 9', nm: '不晚_歌帝梵', rid: '7735523', date: '05-28-24' },
+  { cnt: '1 / 13', nm: '陆今野', rid: '7677941', date: '06-26-24' },
+  { cnt: '2 / 19', nm: '君宝_XR', rid: '7732472', date: '06-10-24' },
+  { cnt: '2 / 24', nm: '池薇_', rid: '7376207', date: '06-27-24' },
+  { cnt: '2 / 123', nm: '爬爬BB', rid: '7763076', date: '05-23-24' },
+  { cnt: '2 / 19', nm: '小绵_喵星', rid: '7692907', date: '06-28-24' },
+  { cnt: '1 / 27', nm: '情殇joke', rid: '6215685', date: '05-27-24' },
+  { cnt: '2 / 3', nm: '梦吖咪', rid: '7138837', date: '05-25-24' },
+  { cnt: '1 / 12', nm: '一曲YQ', rid: '7731273', date: '06-29-24' },
+  { cnt: '2 / 6', nm: '风摇凤铎', rid: '1595705', date: '05-19-24' },
+  { cnt: '1 / 30', nm: '小清的世界_', rid: '7687424', date: '06-11-24' },
+  { cnt: '2 / 6', nm: '阿天_万物声', rid: '7745575', date: '06-04-24' },
+  { cnt: '2 / 20', nm: '王火_素未谋', rid: '1600011', date: '06-06-24' },
+  { cnt: '2 / 54', nm: '桃子的兔王', rid: '472467', date: '06-19-24' },
+  { cnt: '1 / 96', nm: '绮洛儿_沐音', rid: '7760707', date: '06-03-24' },
+  { cnt: '2 / 57', nm: '星月_喵星', rid: '4497881', date: '06-06-24' },
+  { cnt: '1 / 108', nm: '如一_万物声', rid: '7778858', date: '05-29-24' },
+  { cnt: '2 / 96', nm: 'cv声声慢', rid: '7661727', date: '06-29-24' },
+  { cnt: '2 / 109', nm: '泽云飞_亲子', rid: '6867484', date: '05-24-24' },
+  { cnt: '2 / 194', nm: 'XH果冻好好', rid: '7653514', date: '06-28-24' },
+  { cnt: '1 / 87', nm: '甜心教主_鹿', rid: '7609667', date: '06-10-24' },
+  { cnt: '1 / 107', nm: '小瑞_心派', rid: '7739748', date: '05-29-24' },
+  { cnt: '2 / 183', nm: '川川__玖慕', rid: '7801931', date: '06-29-24' },
+  { cnt: '2 / 122', nm: '恩慧luck', rid: '7802071', date: '06-28-24' },
+  { cnt: '2 / 231', nm: '泽让_万物声', rid: '7564832', date: '06-12-24' },
+  { cnt: '1 / 80', nm: '糖_心儿', rid: '7798664', date: '06-30-24' },
+  { cnt: '1 / 59', nm: '狐狸不乖_Y', rid: '5598675', date: '06-22-24' },
+  { cnt: '2 / 168', nm: 'Bai9_', rid: '7719272', date: '06-30-24' },
+  { cnt: '2 / 57', nm: '星柚MIF', rid: '7790476', date: '06-19-24' },
+  { cnt: '1 / 51', nm: '妲己_九星_', rid: '1456087', date: '06-19-24' }
+]
+
+    // Target table body
+    const tableBody = document.getElementById('data-table');
+
+    // Populate table
+    data.forEach(item => {
+      const row = document.createElement('tr');
+
+      // Count
+      const cntCell = document.createElement('td');
+      cntCell.textContent = item.cnt;
+      row.appendChild(cntCell);
+
+      // Name
+      const nameCell = document.createElement('td');
+      nameCell.textContent = item.nm;
+      row.appendChild(nameCell);
+
+      // Date
+      const dateCell = document.createElement('td');
+      dateCell.textContent = item.date;
+      row.appendChild(dateCell);
+
+      // URL Link
+      const linkCell = document.createElement('td');
+      const link = document.createElement('a');
+      link.href = `iting://open?msg_type=52&live_type=0&liveroom_id=${item.rid}`;
+      link.textContent = 'URL';
+      linkCell.appendChild(link);
+      row.appendChild(linkCell);
+
+      // Append row to table
+      tableBody.appendChild(row);
+    });
+  </script>
+</body>
+</html>
