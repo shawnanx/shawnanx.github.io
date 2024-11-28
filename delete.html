@@ -44,117 +44,59 @@
       <!-- JavaScript will populate this -->
     </tbody>
   </table>
+    <script>
+    // Fetch the JSON data
+    fetch('https://username.github.io/repo/lowFans.json') // Replace with your actual JSON URL
+      .then(response => response.json())
+      .then(data => {
+        // Target table body
+        const tableBody = document.getElementById('data-table');
 
-  <script>
+        // Populate table
+        data.forEach(item => {
+          const row = document.createElement('tr');
+
+          // Count
+          const cntCell = document.createElement('td');
+          cntCell.textContent = item.cnt;
+          row.appendChild(cntCell);
+
+          // Name
+          const nameCell = document.createElement('td');
+          nameCell.textContent = item.nm;
+          row.appendChild(nameCell);
+
+          // Date
+          const dateCell = document.createElement('td');
+          dateCell.textContent = item.date;
+          row.appendChild(dateCell);
+
+          // URL Link
+          const linkCell = document.createElement('td');
+          const link = document.createElement('a');
+          link.href = `iting://open?msg_type=52&live_type=0&liveroom_id=${item.rid}`;
+          link.textContent = 'URL';
+          linkCell.appendChild(link);
+          row.appendChild(linkCell);
+
+          // Append row to table
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => console.error('Error fetching JSON:', error));
+  </script>
+<!--   <script>
+
     // Data array
-    const data = [
- { cnt: '3 / 17', nm: '欧K_YM', rid: '6324220', date: '06-02-24' },
-  { cnt: '4 / 27', nm: '是茉一吖_', rid: '6591365', date: '06-28-24' },
-  { cnt: '3 / 12', nm: '小梨吆不倒台', rid: '2822304', date: '06-01-23' },
-  { cnt: '3 / 25', nm: '北北小仙女', rid: '6650169', date: '06-16-24' },
-  { cnt: '3 / 47', nm: '初曦_鹿苑', rid: '6594561', date: '06-17-24' },
-  { cnt: '4 / 40', nm: '乔浮吟', rid: '6807821', date: '07-23-24' },
-  { cnt: '4 / 11', nm: '牛牛收白菜', rid: '6885956', date: '07-23-24' },
-  { cnt: '3 / 9', nm: '双面人lis', rid: '1612244', date: '06-27-24' },
-  { cnt: '4 / 59', nm: '粤酒酒_熙泽', rid: '7287305', date: '06-29-24' },
-  { cnt: '3 / 29', nm: '湫刀渔丶', rid: '5596021', date: '07-02-24' },
-  { cnt: '2 / 41', nm: '南故_沐音', rid: '7276786', date: '07-13-24' },
-  { cnt: '3 / 180', nm: '一口苏酥_唬', rid: '7474735', date: '07-17-24' },
-  { cnt: '4 / 46', nm: '蕊哥_Men', rid: '2240548', date: '04-29-24' },
-  { cnt: '4 / 11', nm: '常花菱_YM', rid: '5753194', date: '04-24-24' },
-  { cnt: '4 / 138', nm: '_沈之南_', rid: '7586147', date: '05-26-24' },
-  { cnt: '1 / 8', nm: '皮皮_YM', rid: '7616464', date: '07-31-24' },
-  { cnt: '3 / 154', nm: '辞川_', rid: '7637078', date: '07-10-24' },
-  { cnt: '1 / 43', nm: '惜惜_莫妮卡', rid: '7302085', date: '07-29-24' },
-  { cnt: '1 / 3', nm: '梦女孩佳_R', rid: '7321129', date: '07-28-24' },
-  { cnt: '2 / 20', nm: '舟舟_YM', rid: '7680149', date: '07-13-24' },
-  { cnt: '4 / 22', nm: '音叔_奇声', rid: '7689430', date: '07-09-24' },
-  { cnt: '1 / 29', nm: '阳紫知有', rid: '7595875', date: '07-13-24' },
-  { cnt: '2 / 84', nm: '知一_沐音', rid: '7639300', date: '07-28-24' },
-  { cnt: '4 / 8', nm: '_欧阳铁柱_', rid: '2283529', date: '04-07-24' },
-  { cnt: '3 / 51', nm: 'night_', rid: '7669851', date: '06-26-24' },
-  { cnt: '4 / 87', nm: '睡着不困_S', rid: '7608800', date: '07-01-24' },
-  { cnt: '4 / 20', nm: '雪儿_心派', rid: '7641922', date: '07-05-24' },
-  { cnt: '3 / 40', nm: '苏婷_素未谋', rid: '7660654', date: '06-13-24' },
-  { cnt: '4 / 161', nm: '雪糯糯_锦月', rid: '7711839', date: '07-20-24' },
-  { cnt: '3 / 21', nm: '兔兔_璀璨', rid: '7734836', date: '06-22-24' },
-  { cnt: '3 / 37', nm: '语灵萧放', rid: '7206072', date: '05-17-24' },
-  { cnt: '4 / 50', nm: '雾风_YM', rid: '2888132', date: '07-07-24' },
-  { cnt: '1 / 99', nm: '慢慢吖_沐音', rid: '7664962', date: '07-09-24' },
-  { cnt: '2 / 41', nm: '虞茵_喵星', rid: '7494619', date: '07-13-24' },
-  { cnt: '4 / 35', nm: '沫晴_万物声', rid: '7681562', date: '05-27-24' },
-  { cnt: '4 / 105', nm: '悠悠兮_沐音', rid: '7705532', date: '06-27-24' },
-  { cnt: '1 / 43', nm: '清菡7', rid: '7654289', date: '07-01-24' },
-  { cnt: '3 / 22', nm: '多味豆豆_万', rid: '7544486', date: '07-02-24' },
-  { cnt: '4 / 15', nm: '刘二_', rid: '7654122', date: '05-27-24' },
-  { cnt: '3 / 37', nm: '犹故_奇声', rid: '7692623', date: '07-13-24' },
-  { cnt: '3 / 33', nm: '邱一芷', rid: '7164444', date: '05-03-24' },
-  { cnt: '4 / 14', nm: '柚子的星期六', rid: '5547852', date: '05-28-24' },
-  { cnt: '4 / 12', nm: '南丁儿_Cl', rid: '7472510', date: '05-04-24' },
-  { cnt: '4 / 36', nm: '陈小白LL', rid: '1903243', date: '05-13-24' },
-  { cnt: '4 / 11', nm: '六颗牙的大爷', rid: '7650718', date: '05-14-24' },
-  { cnt: '1 / 39', nm: '凌风读书_还', rid: '7550654', date: '07-27-24' },
-  { cnt: '3 / 42', nm: '小丫头_锦月', rid: '7577780', date: '06-30-24' },
-  { cnt: '3 / 35', nm: '海的国王', rid: '6365921', date: '06-04-24' },
-  { cnt: '3 / 10', nm: '粉色可可不是', rid: '7672756', date: '05-08-24' },
-  { cnt: '2 / 18', nm: '瑟蕾莎', rid: '983248', date: '07-23-24' },
-  { cnt: '1 / 173', nm: '是甜桃呀_S', rid: '7672290', date: '07-30-24' },
-  { cnt: '2 / 6', nm: '鹤扰_One', rid: '7742785', date: '07-16-24' },
-  { cnt: '4 / 133', nm: '节奏哎呦喂', rid: '7716527', date: '06-17-24' },
-  { cnt: '2 / 98', nm: '尤梨_喵星', rid: '6348770', date: '07-31-24' },
-  { cnt: '3 / 68', nm: 'O耶_YM', rid: '7733740', date: '06-04-24' },
-  { cnt: '4 / 44', nm: '梦凡烦', rid: '7704247', date: '05-30-24' },
-  { cnt: '3 / 15', nm: '丸子_XR', rid: '7650103', date: '05-07-24' },
-  { cnt: '4 / 100', nm: '鹤致_歌帝梵', rid: '7754346', date: '07-04-24' },
-  { cnt: '3 / 145', nm: '阿韵_GDF', rid: '4758079', date: '07-02-24' },
-  { cnt: '3 / 18', nm: '庆丰_唬头', rid: '7719470', date: '06-26-24' },
-  { cnt: '4 / 6', nm: '初笕月_YY', rid: '7732514', date: '06-11-24' },
-  { cnt: '3 / 18', nm: '阳夕木子_佳', rid: '7729122', date: '06-26-24' },
-  { cnt: '4 / 186', nm: '旭bao_', rid: '7769007', date: '07-29-24' },
-  { cnt: '3 / 84', nm: '钢镚_万物声', rid: '7762442', date: '05-25-24' },
-  { cnt: '3 / 67', nm: '破碎青年_Y', rid: '7773670', date: '05-22-24' },
-  { cnt: '4 / 94', nm: '南屿很温柔', rid: '7778051', date: '05-30-24' },
-  { cnt: '3 / 142', nm: '顾辞_一览偶', rid: '7655228', date: '05-21-24' },
-  { cnt: '4 / 123', nm: 'Chuanb', rid: '7761778', date: '05-24-24' },
-  { cnt: '1 / 30', nm: '小清的世界_', rid: '7687424', date: '06-11-24' },
-  { cnt: '3 / 64', nm: '青螺先生', rid: '6337830', date: '05-26-24' },
-  { cnt: '4 / 218', nm: '江城_歌帝梵', rid: '7773353', date: '07-14-24' },
-  { cnt: '2 / 6', nm: '阿天_万物声', rid: '7745575', date: '06-04-24' },
-  { cnt: '4 / 53', nm: '余生_星语', rid: '7732767', date: '05-29-24' },
-  { cnt: '2 / 20', nm: '王火_素未谋', rid: '1600011', date: '06-06-24' },
-  { cnt: '4 / 27', nm: '疯播播_DC', rid: '7676300', date: '06-01-24' },
-  { cnt: '3 / 130', nm: '墨色煙華_', rid: '7731079', date: '07-17-24' },
-  { cnt: '2 / 54', nm: '桃子的兔王', rid: '472467', date: '06-19-24' },
-  { cnt: '4 / 128', nm: '薇恩_万物声', rid: '2736281', date: '06-17-24' },
-  { cnt: '4 / 19', nm: '潇潇_un', rid: '7623569', date: '07-26-24' },
-  { cnt: '1 / 96', nm: '绮洛儿_沐音', rid: '7760707', date: '06-03-24' },
-  { cnt: '4 / 217', nm: '安瑾儿_', rid: '1404742', date: '05-28-24' },
-  { cnt: '3 / 270', nm: 'Octobe', rid: '7753230', date: '05-30-24' },
-  { cnt: '4 / 267', nm: '最初的舞', rid: '7053200', date: '07-21-24' },
-  { cnt: '1 / 75', nm: '木沐_心派', rid: '7733849', date: '07-29-24' },
-  { cnt: '2 / 57', nm: '星月_喵星', rid: '4497881', date: '06-06-24' },
-  { cnt: '1 / 42', nm: '图承欢_Tu', rid: '7582801', date: '07-21-24' },
-  { cnt: '1 / 108', nm: '如一_万物声', rid: '7778858', date: '05-29-24' },
-  { cnt: '2 / 343', nm: '油腻雷叔', rid: '7795462', date: '07-30-24' },
-  { cnt: '2 / 96', nm: 'cv声声慢', rid: '7661727', date: '06-29-24' },
-  { cnt: '2 / 109', nm: '泽云飞_亲子', rid: '6867484', date: '05-24-24' },
-  { cnt: '2 / 194', nm: 'XH果冻好好', rid: '7653514', date: '06-28-24' },
-  { cnt: '3 / 129', nm: '柒越7', rid: '1095063', date: '06-04-24' },
-  { cnt: '2 / 84', nm: '一墨_素未谋', rid: '7755479', date: '07-10-24' },
-  { cnt: '1 / 225', nm: '大贝塔啊大贝', rid: '7764765', date: '07-30-24' },
-  { cnt: '4 / 91', nm: '小巷里的猫_', rid: '7695196', date: '07-20-24' },
-  { cnt: '1 / 87', nm: '甜心教主_鹿', rid: '7609667', date: '06-10-24' },
-  { cnt: '1 / 107', nm: '小瑞_心派', rid: '7739748', date: '05-29-24' },
-  { cnt: '3 / 194', nm: 'Ak_沐音', rid: '7804324', date: '06-26-24' },
-  { cnt: '2 / 183', nm: '川川__玖慕', rid: '7801931', date: '06-29-24' },
-  { cnt: '2 / 122', nm: '恩慧luck', rid: '7802071', date: '06-28-24' },
-  { cnt: '2 / 231', nm: '泽让_万物声', rid: '7564832', date: '06-12-24' },
-  { cnt: '1 / 80', nm: '糖_心儿', rid: '7798664', date: '06-30-24' },
-  { cnt: '1 / 59', nm: '狐狸不乖_Y', rid: '5598675', date: '06-22-24' },
-  { cnt: '2 / 168', nm: 'Bai9_', rid: '7719272', date: '06-30-24' },
-  { cnt: '2 / 57', nm: '星柚MIF', rid: '7790476', date: '06-19-24' },
-  { cnt: '1 / 51', nm: '妲己_九星_', rid: '1456087', date: '06-19-24' }
-]
+    let data = [];
+
+    fetch('https://username.github.io/repo/lowFans.json')
+      .then(response => response.json())
+      .then(data => {
+      console.log(data); // Handle the JSON data here
+    })
+    .catch(error => console.error('Error fetching JSON:', error));
+    
 
     // Target table body
     const tableBody = document.getElementById('data-table');
@@ -189,6 +131,6 @@
       // Append row to table
       tableBody.appendChild(row);
     });
-  </script>
+  </script> -->
 </body>
 </html>
