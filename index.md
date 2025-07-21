@@ -36,7 +36,7 @@ For more details see [GitHub Flavored Markdown](https://guides.github.com/featur
       <td><a href="iting://open?msg_type=96&live_type=0&liveroom_id=2989097&show_back=true"><code>聂传龙XXXXX</code></a></td>
       <td><a href="iting://open?msg_type=52&live_type=1&liveroom_id=2989097&show_back=true"><code>聂传龙XXXXX</code></a></td>
       <td><a href="iting://open?msg_type=39&live_type=0&liveroom_id=2989097&show_back=true"><code>聂传龙XXXXX</code></a></td>
-
+      <td><a href="iting://open?msg_type=137&liveMediaType=1&liveroom_id=380460"><code>^^^^^</code></a></td>
       
       <td><a href="iting://open?msg_type=52&live_type=0&liveroom_id=2989097"><code>abc</code></a></td>
     </tr>
