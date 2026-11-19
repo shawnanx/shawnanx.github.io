@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sllive 跳转测试</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0; padding: 16px;
+    font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  h2 { font-size: 16px; margin: 20px 0 10px; }
+  table { border-collapse: collapse; width: 100%; margin-bottom: 8px; }
+  td { padding: 4px; text-align: center; }
+  a.btn {
+    display: inline-block; padding: 8px 12px; border-radius: 8px;
+    background: #2563eb; color: #fff; text-decoration: none; font-size: 14px;
+  }
+  a.btn:hover { background: #1d4ed8; }
+  label { display: block; margin-bottom: 10px; font-size: 14px; }
+  input {
+    margin-left: 8px; padding: 6px 8px; font-size: 14px; width: 160px;
+    border: 1px solid rgba(127,127,127,.4); border-radius: 6px;
+  }
+</style>
+</head>
+<body>
+
+<h2>一、常用跳转（sllive）</h2>
+<table>
+  <tbody>
+    <tr>
+      <td><a class="btn" href="sllive://open?msg_type=52&live_type=0&liveroom_id=2989097&show_back=true">聂传龙XXXXX</a></td>
+      <td><a class="btn" href="sllive://open?msg_type=96&live_type=0&liveroom_id=2989097&show_back=true">聂传龙XXXXX</a></td>
+    </tr>
+    <tr>
+      <td><a class="btn" href="sllive://open?msg_type=52&live_type=1&liveroom_id=2989097&show_back=true">聂传龙XXXXX</a></td>
+      <td><a class="btn" href="sllive://open?msg_type=39&live_type=0&liveroom_id=2989097&show_back=true">聂传龙XXXXX</a></td>
+    </tr>
+    <tr>
+      <td><a class="btn" href="sllive://open?msg_type=52&live_type=0&liveroom_id=9372309&show_back=true">tt52</a></td>
+      <td><a class="btn" href="sllive://open?msg_type=137&liveMediaType=1&liveroom_id=380460">^^^^^</a></td>
+    </tr>
+    <tr>
+      <td><a class="btn" href="sllive://open?msg_type=52&live_type=0&liveroom_id=2989097">abc</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>二、输入房间 id，测试 msg_type 0 – 100（sllive）</h2>
+<label>liveroom_id：<input id="rid" type="text" value="9372309" inputmode="numeric"></label>
+<table>
+  <tbody id="rows"></tbody>
+</table>
+
+<script>
+(function () {
+  var input = document.getElementById('rid');
+  var rows = document.getElementById('rows');
+  var MAX = 100, PER = 10;
+
+  function build() {
+    var rid = input.value.trim();
+    rows.innerHTML = '';
+    var tr = null;
+    for (var i = 0; i <= MAX; i++) {
+      if (i % PER === 0) {
+        tr = document.createElement('tr');
+        rows.appendChild(tr);
+      }
+      var td = document.createElement('td');
+      var a = document.createElement('a');
+      a.className = 'btn';
+      a.href = 'sllive://open?msg_type=' + i + '&live_type=0&liveroom_id=' +
+               encodeURIComponent(rid) + '&show_back=true';
+      a.textContent = 'TEST ' + i;
+      td.appendChild(a);
+      tr.appendChild(td);
+    }
+  }
+
+  input.addEventListener('input', build);
+  build();
+})();
+</script>
+
+</body>
+</html>
